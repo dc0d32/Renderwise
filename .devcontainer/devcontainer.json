@@ -1,0 +1,13 @@
+{
+    "name": "Renderwise Development",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true
+            }
+        }
+    },
+    "postCreateCommand": "npm install",
+    "remoteUser": "node"
+}
