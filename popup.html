@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +10,30 @@
       margin: 20px;
       width: 250px;
     }
-    button, select {
+
+    button,
+    select {
       display: block;
       margin: 10px 0;
       padding: 10px;
       width: 100%;
     }
+
     input[type="text"] {
       display: block;
       margin: 10px 0;
       padding: 10px;
-      width: calc(100% - 20px); /* Adjust width to match select elements accounting for padding */
+      width: calc(100% - 20px);
+      /* Adjust width to match select elements accounting for padding */
       box-sizing: border-box;
     }
+
     select {
       background-color: #f0f0f0;
     }
   </style>
 </head>
+
 <body>
   <h1>Renderwise</h1>
   <button id="toggle-global">Toggle Global Font Patching</button>
@@ -35,9 +42,9 @@
   <div class="font-settings">
     <label for="serif-font">Serif Font:</label> <br />
     <select id="serif-font" /><br />
-    <input type="text" id="serif-font-custom" placeholder="Enter custom font" style="display: none;">  <br />
+    <input type="text" id="serif-font-custom" placeholder="Enter custom font" style="display: none;"> <br />
 
-    <label for="sans-serif-font">Sans Serif Font:</label>  <br />
+    <label for="sans-serif-font">Sans Serif Font:</label> <br />
     <select id="sans-serif-font" /><br />
     <input type="text" id="sans-serif-font-custom" placeholder="Enter custom font" style="display: none;"> <br />
 
@@ -50,4 +57,5 @@
 
   <script src="popup.js"></script>
 </body>
+
 </html>

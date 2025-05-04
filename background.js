@@ -10,7 +10,7 @@ async function getFontPatchingState(hostname) {
             const globalFontPatchingEnabled = result.globalFontPatchingEnabled !== undefined ? result.globalFontPatchingEnabled : DEFAULT_SETTINGS.globalFontPatchingEnabled;
             const siteFontPatchingSettings = result.siteFontPatchingSettings || DEFAULT_SETTINGS.siteFontPatchingSettings;
             const siteFontPatchingEnabled = hostname ? siteFontPatchingSettings[hostname] : undefined;
-            
+
             resolve({
                 globalFontPatchingEnabled,
                 siteFontPatchingEnabled,
@@ -24,18 +24,18 @@ async function updateExtensionIcon(tabId, isActive) {
     // Define colors with alpha channel for better readability
     const ACTIVE_COLOR = "#4CAF50"; // Green
     const INACTIVE_COLOR = "#F44336"; // Red
-    
+
     try {
         const text = isActive ? "✓" : "✗";
         const color = isActive ? ACTIVE_COLOR : INACTIVE_COLOR;
-        
-        await chrome.action.setBadgeText({ 
+
+        await chrome.action.setBadgeText({
             text: text,
-            tabId: tabId 
+            tabId: tabId
         });
-        await chrome.action.setBadgeBackgroundColor({ 
+        await chrome.action.setBadgeBackgroundColor({
             color: color,
-            tabId: tabId 
+            tabId: tabId
         });
     } catch (error) {
         console.error('Error updating extension icon:', error);
@@ -47,8 +47,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'getSiteOverride') {
         const currentSite = new URL(sender.tab.url).hostname;
         getFontPatchingState(currentSite).then(states => {
-            const isActive = states.globalFontPatchingEnabled && 
-                           (states.siteFontPatchingEnabled === undefined || states.siteFontPatchingEnabled === true);
+            const isActive = states.globalFontPatchingEnabled &&
+                (states.siteFontPatchingEnabled === undefined || states.siteFontPatchingEnabled === true);
             updateExtensionIcon(sender.tab.id, isActive);
             sendResponse({
                 globalOverride: states.globalFontPatchingEnabled,
@@ -60,7 +60,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
         return true;
     }
-    
+
     if (message.type === 'getOverrideStates') {
         getFontPatchingState(message.hostname).then(states => {
             sendResponse({
